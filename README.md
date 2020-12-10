@@ -1,12 +1,14 @@
 # Ansible-Task-3
 
 # Create a Folder for roles
+<br>
 <pre>
 [root@localhost ~]# cd /
 [root@localhost ~]# mkdir myroles
 [root@localhost /]# cd  myroles/
 </pre>
 # Create Role to launch 3 instance for httpd and 1 for HAProxy on AWS
+<br>
 <pre>
 [root@localhost myroles]# ansible-galaxy init launch-instance
 - Role launch-instance was created successfully
@@ -78,6 +80,7 @@ subnet: "subnet-7eccc816"
 sg: "sg-078531d324434dcae"
 </pre>
 # create a Role for configuring Httpd webserver 
+<br>
 <pre>
 [root@localhost /]# cd myroles/
 [root@localhost myroles]# ansible-galaxy init conf-webserver
@@ -110,6 +113,7 @@ This is tasks main file for conf-webserver Role
     enabled: yes
 </pre>
 # Configure HAProxy using Ansible Role
+<br>
 <pre>
 [root@localhost /]# cd myroles/
 [root@localhost myroles]# ansible-galaxy init conf-ha
@@ -258,6 +262,7 @@ backend app
 
 </pre>
 # Create a inventory folder 
+<br>
 <pre>
 [root@localhost tasks]# cd /
 [root@localhost /]# mkdir ip
@@ -270,6 +275,7 @@ backend app
 ec2.ini  ec2.py
 </pre>
 # Create a ansible playbook for task-3
+<br>
 <pre>
 [root@localhost /]# vim launch.yml
 this playbook launch instance
@@ -291,6 +297,7 @@ this playbook configure web server and HAProxy(load-balancer)
     - role: conf-ha
 </pre>
 # Configure Ansible 
+<br>
 <pre>
 [root@localhost /]# vim /etc/ansible/ansible.cfg
 </pre>
@@ -313,6 +320,7 @@ become_ask_pass = FALSE
 </pre>
 
 # Download your ssh key of aws and give some permissions
+<br>
 <pre>
 [root@localhost /]# chmod 400 mykey.pem
 [root@localhost /]# chmod 600 mykey.pem
@@ -320,6 +328,7 @@ become_ask_pass = FALSE
 -rw-------.   1 root root 1674 Jul 30 23:37 mykey.pem
 </pre>
 # Declare AWS access key , secret key and region
+<br>
 <pre>
 [root@localhost /]# export AWS_REGION=ap-south-1
 [root@localhost /]# export AWS_ACCESS_KEY_ID=AKIAYXXXXXXXXXXXXXXX
@@ -327,5 +336,5 @@ become_ask_pass = FALSE
 </pre>
 
 # Finally run this command
-<b>[root@localhost /]# ansible-playbook launch.yml</b>
+<b>[root@localhost /]# ansible-playbook launch.yml</b><br>
 <b>[root@localhost /]# ansible-playbook conf.yml</b>
