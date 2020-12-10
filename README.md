@@ -120,7 +120,7 @@ defaults  files  handlers  meta  README.md  tasks  templates  tests  vars
 [root@localhost conf-webserver]# cd tasks/
 [root@localhost tasks]# vim main.yml
 </pre>
-c
+This is tasks main file for conf-ha Role
 <pre>
 ---
 # tasks file for conf-ha
