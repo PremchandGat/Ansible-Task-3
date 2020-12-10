@@ -1,0 +1,8 @@
+
+- hosts: tag_Name_webserver
+  roles:
+    - role: conf-webserver
+
+- hosts: tag_Name_ha
+  roles:
+    - role: conf-ha

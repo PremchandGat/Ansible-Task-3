@@ -1,0 +1,43 @@
+---
+
+# tasks file for launch-instance
+- name: Launching the Webservers EC2 instances on AWS
+  ec2:
+    region: "ap-south-1"
+    image: "ami-052c08d70def0ac62"
+    instance_type: "t2.micro"
+    count: 3 
+    vpc_subnet_id: "{{ subnet }}"
+    group_id: "{{ sg }}"
+    instance_tags:
+      Name: "webserver"
+    key_name: "{{ key }}"
+    assign_public_ip: yes
+    state: present
+    wait: yes
+    aws_access_key: "{{ access }}"
+    aws_secret_key: "{{ secret }}"
+  register: webserver_logs
+
+- name: Launching the load balancer EC2 instances on AWS
+  ec2:
+    region: "ap-south-1"
+    image: "ami-052c08d70def0ac62"
+    instance_type: "t2.micro"
+    count: 1 
+    vpc_subnet_id: "{{ subnet }}"
+    group_id: "{{ sg }}"
+    instance_tags:
+      Name: "ha"
+    key_name: "{{ key }}"
+    assign_public_ip: yes
+    state: present
+    wait: yes
+    aws_access_key: "{{ access }}"
+    aws_secret_key: "{{ secret }}"
+  register: ha_logs
+
+
+- debug:
+     var: webserver_logs
+     var: ha_logs

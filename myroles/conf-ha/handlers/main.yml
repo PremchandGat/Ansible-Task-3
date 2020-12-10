@@ -1,0 +1,7 @@
+---
+# handlers file for conf-ha
+- name: restart HAProxy
+  service:
+     name: "haproxy"
+     state: restarted
+

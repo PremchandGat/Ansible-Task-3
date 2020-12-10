@@ -1,0 +1,18 @@
+---
+# tasks file for conf-ha
+- name: Installing load balancer HAProxy
+  package:
+     name: "haproxy"
+     state: present
+
+- name: Copying HAProxy's configuration file
+  template:
+    src: "haproxy.cfg"
+    dest: "/etc/haproxy/haproxy.cfg"
+    mode: preserve
+  notify: restart HAProxy
+
+- name: Starting the load balancer (HAProxy)
+  service:
+    name: "haproxy"
+    state: started

@@ -1,0 +1,7 @@
+---
+# vars file for launch-instance
+secret: "write your secret key"
+access: "write your access key"
+key: "mykey"
+subnet: "subnet-7eccc816"
+sg: "sg-078531d324434dcae"
